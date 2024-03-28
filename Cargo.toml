@@ -6,7 +6,7 @@ members = [
 
 [package]
 name = "tower-sessions-rorm-store"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "Session Store implementation for rorm"
 authors = ["Niklas Pfister <git@omikron.dev>"]

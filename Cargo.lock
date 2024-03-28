@@ -1450,9 +1450,9 @@ dependencies = [
 
 [[package]]
 name = "rorm-sql"
-version = "0.8.2"
+version = "0.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8327ffc3c7d9fb2155ba8d5cab142706fc8049fa471af8267663bcd5e58d560a"
+checksum = "9b1cac99a2a6d928f75a0f128bd59b3fcf042e56ce45c70cda8577b2c9af5828"
 dependencies = [
  "chrono",
  "libsqlite3-sys",
@@ -2253,7 +2253,7 @@ dependencies = [
 
 [[package]]
 name = "tower-sessions-rorm-store"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "async-trait",
  "base64 0.22.0",
