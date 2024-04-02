@@ -25,6 +25,9 @@ async-trait = "~0.1"
 # required for SessionStore trait
 serde_json = { version = "~1" }
 
+# Tracing
+tracing = { version = "~0.1" }
+
 # Error management
 thiserror = { version = "~1" }
 base64 = { version = "~0.22" }

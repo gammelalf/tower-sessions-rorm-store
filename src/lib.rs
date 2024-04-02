@@ -37,6 +37,8 @@ use tower_sessions::session_store::Error;
 use tower_sessions::session_store::Result;
 use tower_sessions::ExpiredDeletion;
 use tower_sessions::SessionStore;
+use tracing::debug;
+use tracing::instrument;
 
 /// Implement this trait on a [Model] that should be used
 /// to store sessions in a database.
@@ -110,6 +112,7 @@ where
     <S as Model>::Primary: Field<Type = String>,
     <S as Patch>::Decoder: Send + Sync + 'static,
 {
+    #[instrument(level = "trace")]
     async fn delete_expired(&self) -> Result<()> {
         let db = &self.db;
 
@@ -129,7 +132,9 @@ where
     <S as Model>::Primary: Field<Type = String>,
     <S as Patch>::Decoder: Send + Sync + 'static,
 {
+    #[instrument(level = "trace")]
     async fn create(&self, session_record: &mut Record) -> Result<()> {
+        debug!("Creating new session");
         let mut tx = self
             .db
             .start_transaction()
@@ -164,6 +169,7 @@ where
         Ok(())
     }
 
+    #[instrument(level = "trace")]
     async fn save(&self, session_record: &Record) -> Result<()> {
         let Record {
             id,
@@ -207,7 +213,9 @@ where
         Ok(())
     }
 
+    #[instrument(level = "trace")]
     async fn load(&self, session_id: &Id) -> Result<Option<Record>> {
+        debug!("Loading session");
         let db = &self.db;
 
         let session = query!(db, S)
@@ -233,6 +241,7 @@ where
         })
     }
 
+    #[instrument(level = "trace")]
     async fn delete(&self, session_id: &Id) -> Result<()> {
         let db = &self.db;
 
