@@ -21,7 +21,7 @@ use rorm::Model;
 use rorm::Patch;
 use time::OffsetDateTime;
 use tokio::net::TcpListener;
-use tower_sessions::SessionManagerLayer;
+use tower_sessions_rorm_store::tower_sessions::SessionManagerLayer;
 use tower_sessions_rorm_store::RormStore;
 use tower_sessions_rorm_store::SessionModel;
 use tower_sessions_rorm_store::Value;
@@ -66,7 +66,7 @@ impl SessionModel for Session {
     }
 }
 
-async fn index(session: tower_sessions::Session) -> String {
+async fn index(session: tower_sessions_rorm_store::tower_sessions::Session) -> String {
     let counter: u64 = session.get("counter").await.unwrap().unwrap_or_default();
     session.insert("counter", counter + 1).await.unwrap();
     format!(

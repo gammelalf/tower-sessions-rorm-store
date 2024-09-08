@@ -9,8 +9,6 @@ authors = ["Niklas Pfister <git@omikron.dev>"]
 [dependencies]
 # webframework
 axum = { version = "~0.7" }
-# Sessons
-tower-sessions = { version = "~0.12" }
 tower-sessions-rorm-store = { version = "*", path = ".." }
 
 # orm
